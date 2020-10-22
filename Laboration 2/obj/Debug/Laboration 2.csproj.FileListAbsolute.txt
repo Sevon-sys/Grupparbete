@@ -1,0 +1,7 @@
+C:\Users\SEVON\source\repos\Laboration 2\Laboration 2\bin\Debug\Laboration 2.exe.config
+C:\Users\SEVON\source\repos\Laboration 2\Laboration 2\bin\Debug\Laboration 2.exe
+C:\Users\SEVON\source\repos\Laboration 2\Laboration 2\bin\Debug\Laboration 2.pdb
+C:\Users\SEVON\source\repos\Laboration 2\Laboration 2\obj\Debug\Laboration 2.csprojAssemblyReference.cache
+C:\Users\SEVON\source\repos\Laboration 2\Laboration 2\obj\Debug\Laboration 2.csproj.CoreCompileInputs.cache
+C:\Users\SEVON\source\repos\Laboration 2\Laboration 2\obj\Debug\Laboration 2.exe
+C:\Users\SEVON\source\repos\Laboration 2\Laboration 2\obj\Debug\Laboration 2.pdb
