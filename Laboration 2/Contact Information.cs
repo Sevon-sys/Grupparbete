@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Laboration_2
 {
@@ -28,10 +32,6 @@ namespace Laboration_2
         public void Contacts()
         {
             Console.Write($"Name: {_surName}, {_firstName} \nAddress: {_address} \nHome number: {_phoneHome} \nPhone Number: {_phoneMob}\n\n");
-        }
-
-        public void SearchFunc()
-        {
         }
     }
 }
