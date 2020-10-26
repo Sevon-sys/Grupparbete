@@ -67,7 +67,7 @@ namespace Laboration_2
                     removeint = removeint - 1;
                     if (success == true)
                     {
-                        if (removeint <= People.Count && removeint >= 0)
+                        if (removeint < People.Count && removeint >= 0)
                         {
                             People.RemoveAt(removeint);
                         }
@@ -213,6 +213,15 @@ namespace Laboration_2
                             }
                         }
                     }
+                }
+                else if (choice == "exit")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid option.");
+                    continue;
                 }
             }
         }
