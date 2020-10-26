@@ -11,10 +11,12 @@ namespace Laboration_2
 {
     class Program
     {
+        //En list med klass-scope
         public static List<ContactInfo> People = new List<ContactInfo>();
 
         static void Main()
         {
+            //Förbestämda instanser av listan för att enkelt kunna använda sig utav funktionerna i programmet
             People.Add(new ContactInfo("Lars", "Carlstedt", "hemma hos sig", "000-00 000", "000-00 00 000"));
             People.Add(new ContactInfo("Oskar", "Vennerlund", "någonstans", "000-00 00 000", "000-00 00 000"));
             People.Add(new ContactInfo("Karin", "Mäki-kala", "på discord", "000-00 00 000", "000-00 00 000"));
@@ -24,18 +26,22 @@ namespace Laboration_2
 
             Console.WriteLine("Welcome to your phonebook.");
             Console.WriteLine("Choose an option from the list:");
-            Console.WriteLine("add\nremove\nlist\nsearch\nchange\nexit\n");
-
+            Console.WriteLine("add\nremove\nlist\nsearch\nchange\nexit");
+            
+            //Variabler för att skapa en ny kontakt
             string firstName;
             string surName;
             string address;
             string homeNumber;
             string phoneNumber;
             
+            //Loop som gör att programmet håller igång
             while (true)
             {
                 var choice = Console.ReadLine();
                 choice.ToLower();
+
+                //En funktion för att lägga till en kontakt i listan
                 if (choice == "add")
                 {
                     Console.Write("Please enter your first name: ");
@@ -53,6 +59,7 @@ namespace Laboration_2
                     continue;
                 }
 
+                //En funktion för att ta bort en kontakt från listan
                 else if (choice == "remove")
                 {
                     int i = 1;
@@ -63,13 +70,13 @@ namespace Laboration_2
                     }
                     Console.WriteLine("Choose a number on the list to remove that contact: ");
                     string removechoice = Console.ReadLine();
-                    var success = int.TryParse(removechoice, out int removeint);
-                    removeint = removeint - 1;
+                    var success = int.TryParse(removechoice, out int removePerson);
+                    removePerson = removePerson - 1;
                     if (success == true)
                     {
-                        if (removeint < People.Count && removeint >= 0)
+                        if (removePerson < People.Count && removePerson >= 0)
                         {
-                            People.RemoveAt(removeint);
+                            People.RemoveAt(removePerson);
                         }
                         else
                         {
@@ -85,6 +92,7 @@ namespace Laboration_2
                     continue;
                 }
 
+                //En funktion för att visa kontakter i listan
                 else if (choice == "list")
                 {
                     int i = 1;
@@ -97,6 +105,7 @@ namespace Laboration_2
                     continue;
                 }
 
+                //En funktion för att söka i listan
                 else if (choice == "search")
                 {
                     Console.WriteLine("What do you want to search for? \n1. First name\n2. LastName\n3. Address\n4. Phone home\n5. Phone mobile");
@@ -127,6 +136,7 @@ namespace Laboration_2
                     continue;
                 }
 
+                //En funktion för att ändra användaruppgifter i listan
                 else if (choice == "change")
                 {
                     int i = 1;
@@ -136,13 +146,15 @@ namespace Laboration_2
                         item.Contacts();
                     }
 
-                    Console.WriteLine("\nWhich contact would you like to change?\n");
-                    string input_String = Console.ReadLine();
-                    var success = int.TryParse(input_String, out int user_Index);
-
-                    if (success == true)
+                    //Console.WriteLine("\nWhich contact would you like to change?\n");
+                    //string input_String = Console.ReadLine();
+                    //var success = int.TryParse(input_String, out int user_Index);
+                    while (true)
                     {
-                        while (true)
+                        Console.WriteLine("\nWhich contact would you like to change?\n");
+                        string input_String = Console.ReadLine();
+                        var success = int.TryParse(input_String, out int user_Index);
+                        if (success == true)
                         {
                             user_Index = user_Index - 1;
                             if (user_Index < People.Count && user_Index >= 0)
@@ -212,144 +224,105 @@ namespace Laboration_2
                                 break;
                             }
                         }
+                        else
+                        {
+                            Console.WriteLine("You did not enter a number.");
+                            continue;
+                        }
                     }
                 }
+
+                //En funktion för att avsluta programmet
                 else if (choice == "exit")
                 {
                     break;
                 }
+
+                //Ett felmeddelande-verktyg
                 else
                 {
-                    Console.WriteLine("Invalid option.");
+                    Console.WriteLine("Invalid option. Choose an option from the list: \nadd\nremove\nlist\nsearch\nchange\nexit\n");
                     continue;
                 }
             }
         }
 
-
-        //private static void RemovePerson()
-        //{
-        //    List<ContactInfo> people = FirstNameSearch();
-
-        //    if (people.Count == 0)
-        //    {
-        //        Console.WriteLine("Could not be found.");
-        //        return;
-        //    }
-        //    if (people.Count == 1)
-        //    {
-        //        RemovePersonFromList();
-        //        return;
-        //    }
-        //    Console.WriteLine("Choose the number of the person to remove.");
-        //    for (int i = 0; i < people.Count; i++)
-        //    {
-        //        Console.Write(i);
-        //        foreach(var index in people)
-        //        {
-        //            index.Contacts();
-        //        }
-        //    }
-        //    int removePersonNumber = Convert.ToInt32(Console.ReadLine());
-        //    if (removePersonNumber > people.Count -1 || removePersonNumber < 0)
-        //    {
-        //        Console.WriteLine("Invalid.");
-        //        return;
-        //    }
-        //    foreach(var index in people)
-        //    {
-        //        index.Contacts();
-        //    }
-        //}
-
-        //private static void RemovePersonFromList()
-        //{
-        //    Console.WriteLine("Do you want to remove this person? Y/N");
-        //    foreach (var index in People)
-        //    {
-        //        index.Contacts();
-        //    }
-        //    string choiceRemove = "";
-        //    if (choiceRemove == "Y" || choiceRemove == "y")
-        //    {
-        //        foreach (var index in People)
-        //        {
-        //            //index.Remove();
-        //        }
-        //    }
-        //}
-
+        //Metod för att söka efter förnamn
         private static void SearchFirstName()
         {
             List<ContactInfo> people = FirstNameSearch();
             if(people.Count == 0)
             {
-                Console.WriteLine("False");
+                Console.WriteLine("Could not find a person in the list with that first name");
                 return;
             }
-            Console.WriteLine("True");
             foreach(var index in people)
             {
                 index.Contacts();
             }
         }
+
+        //Metod för att söka efter efternamn
         private static void SearchSurName()
         {
             List<ContactInfo> people = SurNameSearch();
             if (people.Count == 0)
             {
-                Console.WriteLine("False");
+                Console.WriteLine("Could not find a person in the list with the surname");
                 return;
             }
-            Console.WriteLine("True");
             foreach (var index in people)
             {
                 index.Contacts();
             }
         }
+        
+        //Metod för att söka efter address
         private static void SearchAddress()
         {
             List<ContactInfo> people = AdressSearch();
             if (people.Count == 0)
             {
-                Console.WriteLine("False");
+                Console.WriteLine("Could not find a person in the list with that address");
                 return;
             }
-            Console.WriteLine("True");
-            foreach (var index in people)
-            {
-                index.Contacts();
-            }
-        }
-        private static void SearchPhoneHome()
-        {
-            List<ContactInfo> people = PhoneHomeSearch();
-            if (people.Count == 0)
-            {
-                Console.WriteLine("False");
-                return;
-            }
-            Console.WriteLine("True");
-            foreach (var index in people)
-            {
-                index.Contacts();
-            }
-        }
-        private static void SearchPhoneMob()
-        {
-            List<ContactInfo> people = PhoneMobSearch();
-            if (people.Count == 0)
-            {
-                Console.WriteLine("False");
-                return;
-            }
-            Console.WriteLine("True");
             foreach (var index in people)
             {
                 index.Contacts();
             }
         }
 
+        //Metod för att söka efter hemnummer
+        private static void SearchPhoneHome()
+        {
+            List<ContactInfo> people = PhoneHomeSearch();
+            if (people.Count == 0)
+            {
+                Console.WriteLine("Could not find a person in the list with that home number");
+                return;
+            }
+            foreach (var index in people)
+            {
+                index.Contacts();
+            }
+        }
+
+        //Metod för att söka efter mobilnummer
+        private static void SearchPhoneMob()
+        {
+            List<ContactInfo> people = PhoneMobSearch();
+            if (people.Count == 0)
+            {
+                Console.WriteLine("Could not find a person in the list with that mobile number");
+                return;
+            }
+            foreach (var index in people)
+            {
+                index.Contacts();
+            }
+        }
+
+        //Söker igenom i listan efter förnamnet som angavs i sökmetod-parametern
         private static List<ContactInfo> FirstNameSearch()
         {
             Console.WriteLine("Who do you want to find?");
@@ -357,24 +330,31 @@ namespace Laboration_2
             return People.Where(x => x.FirstName.ToLower() == firstName.ToLower()).ToList();
         }
 
+        //Söker igenom i listan efter efternamnet som angavs i sökmetod-parametern
         private static List<ContactInfo> SurNameSearch()
         {
             Console.WriteLine("Who do you want to find?");
             string surName = Console.ReadLine();
             return People.Where(x => x.SurName.ToLower() == surName.ToLower()).ToList();
         }
+
+        //Söker igenom i listan efter addressen som angavs i sökmetod-parametern
         private static List<ContactInfo> AdressSearch()
         {
             Console.WriteLine("Who do you want to find?");
             string address = Console.ReadLine();
             return People.Where(x => x.Address.ToLower() == address.ToLower()).ToList();
         }
+
+        //Söker igenom i listan efter hemnummret som angavs i sökmetod-parametern
         private static List<ContactInfo> PhoneHomeSearch()
         {
             Console.WriteLine("Who do you want to find?");
             string phoneHome = Console.ReadLine();
             return People.Where(x => x.PhoneHome.ToLower() == phoneHome.ToLower()).ToList();
         }
+
+        //Söker igenom i listan efter mobilnummret som angavs i sökmetod-parametern
         private static List<ContactInfo> PhoneMobSearch()
         {
             Console.WriteLine("Who do you want to find?");
